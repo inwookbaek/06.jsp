@@ -3,9 +3,8 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <fmt:setLocale value="ko"/>
-<fmt:bundle basename="resource.message">
-	<fmt:message key="TITLE" var="title"></fmt:message>
-</fmt:bundle>
+<fmt:setBundle var="message" basename="resource.message" />
+<fmt:message bundle="${ message }" key="TITLE" var="title"/>
 
 <!DOCTYPE html>
 <html>
@@ -18,13 +17,14 @@
 </head>
 <body>
 	<h1>${ title }</h1>
-	<fmt:bundle basename="resource.message">
-		<fmt:message key="GREETING"/><br>
-		<c:if test="${ !empty param.id }">
-			<fmt:message key="USER">
-				<fmt:param value="${ param.id }"/>
-			</fmt:message>
-		</c:if>
-	</fmt:bundle>
+
+	<fmt:message bundle="${ message }" key="GREETING"/><br>
+	<c:if test="${ !empty param.id }">
+		<fmt:message bundle="${ message }" key="USER">
+			<fmt:param value="${ param.id }"/>
+			<fmt:param value="${ param.age }"/>
+		</fmt:message>
+	</c:if>
+
 </body>
 </html>
