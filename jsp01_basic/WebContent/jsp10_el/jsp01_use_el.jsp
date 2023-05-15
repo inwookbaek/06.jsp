@@ -99,12 +99,3 @@ http://localhost:8088/jsp01_basic/jsp10_el/jsp01_use_el.jsp?id=sonny
 <h3>이름 : ${ requestScope.name } </h3>
 <h3>request의 파라미터 id의 값 = ${ param.id }</h3>
 
-
-
-
-
-
-
-
-
-
