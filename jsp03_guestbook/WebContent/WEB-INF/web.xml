@@ -9,7 +9,7 @@
   <servlet>
   	
   	<servlet-name>DBCPInit</servlet-name>
-  	<servlet-class>com.lec.dbcp.DBCPInit</servlet-class>
+  	<servlet-class>com.lec.web.jdbc.DBCPInit</servlet-class>
   	
   	<init-param>
   		<param-name>jdbcDriver</param-name>
@@ -18,7 +18,7 @@
   	
   	<init-param>
   		<param-name>url</param-name>
-  		<param-value>jdbc:mariadb://localhost:3306/jspstudy</param-value>
+  		<param-value>jdbc:mariadb://localhost:3306/guestbook</param-value>
   	</init-param>
   	
   	<init-param>
@@ -33,7 +33,7 @@
   	
   	<init-param>
   		<param-name>poolName</param-name>
-  		<param-value>myPoolName</param-value>
+  		<param-value>guestbook</param-value>
   	</init-param>
   	
   	<load-on-startup>1</load-on-startup>
