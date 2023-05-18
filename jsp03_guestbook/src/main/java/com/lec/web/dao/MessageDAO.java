@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.lec.web.jdbc.JDBCUtil;
 import com.lec.web.model.Message;
 
 public class MessageDAO {
@@ -52,4 +53,38 @@ public class MessageDAO {
 		message.setMessage(rs.getString("message"));
 		return message;
 	}
+
+	public int insert(Connection conn, Message message) {
+		
+		PreparedStatement pstmt = null;
+		String sql = "insert into guestbook_message(guest_name, password, message) " 
+				   + " values(?,?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, message.getGuestName());
+			pstmt.setString(2, message.getPassword());
+			pstmt.setString(3, message.getMessage());
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(conn, pstmt, null);
+		}
+		return 0;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

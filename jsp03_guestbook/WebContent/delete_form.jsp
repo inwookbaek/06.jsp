@@ -1,8 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
-	String id = request.getParameter("id");
-	// select * from guest_message where id = ?
+	int id = Integer.parseInt(request.getParameter("id"));
 %>
 <!DOCTYPE html>
 <html>
@@ -14,8 +13,20 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<h1>방명록삭제하기</h1>
-	
-	<%= id %>
+	<div class="container" align="center">
+		<h3>메시지삭제하기</h3>
+		
+		<form action="delete_message.jsp" method="post">
+			<b class="text-danger">메시지를 삭제하려면 비밀번호를 입력하세요!!</b>
+			<div class="input-group mb-2 mr-sm-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="fas fa-lock"></i></span>
+				</div>
+				<input type="password" name="pw" class="form-control" size="30">
+			</div>
+			<input type="hidden" name="id" value=$/>			
+			<input type="submit" class="btn btn-danger" value="메시지삭제"/>
+		</form>
+	</div>
 </body>
 </html>
