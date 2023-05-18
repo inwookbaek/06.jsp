@@ -8,6 +8,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">	
+ 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+		crossorigin="anonymous">  
   	<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 	<title>Insert title here</title>
@@ -24,7 +27,7 @@
 				</div>
 				<input type="password" name="pw" class="form-control" size="30">
 			</div>
-			<input type="hidden" name="id" value=$/>			
+			<input type="hidden" name="id" value="${param.id}"/>			
 			<input type="submit" class="btn btn-danger" value="메시지삭제"/>
 		</form>
 	</div>

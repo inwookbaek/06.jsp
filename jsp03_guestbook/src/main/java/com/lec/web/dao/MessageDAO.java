@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -73,10 +74,83 @@ public class MessageDAO {
 		}
 		return 0;
 	}
+
+	public Message select(Connection conn, int id) throws SQLException {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from guestbook_message where message_id = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) return makeMessage(rs);
+			else return null;		
+		} finally {
+			JDBCUtil.close(null, pstmt, null);
+		}		
+	}
+
+	public int delete(Connection conn, int id) throws SQLException {
+		
+		PreparedStatement pstmt = null;
+		String sql = "delete from guestbook_message where message_id = ?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			return pstmt.executeUpdate();	
+		} finally {
+			JDBCUtil.close(null, pstmt, null);
+		}
+	}
+
+	public int update(Connection conn, int id, String msg) throws SQLException {
+		
+		PreparedStatement pstmt = null;
+		String sql = "update guestbook_message set message =? "
+				   + " where message_id = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, msg);
+			pstmt.setInt(2, id);
+			return pstmt.executeUpdate();	
+		} finally {
+			JDBCUtil.close(null, pstmt, null);
+		}		
+	}
+	
+	// 1. 전체레코드수구하기
+	public int selectCount(Connection conn) throws SQLException {
+		
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) from guestbook_message";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			rs.next();
+			return rs.getInt(1); // 총 방명록 건수
+		} finally {
+			JDBCUtil.close(null, stmt, rs);
+		}
+	}
 }
 
 
 
+//2. 한페이지당 보여지 건수 = 10
+//3. 총페이지수 1001 / 10 = 100 + 1 -> 101이지
+//4. 페이지를 클릭 select * from 테이블 limit 10*10, 10
+//5. 다음페이지 + 10+ 1 = 11~20
+//6. 마지막페이지 구현
+//7. 이전페이지 11 - 10 = 1
+//8. 처음페이지 = 1
+//9. 첫페이지라면 이전페이지, 첫페이지 버튼 비활성화
+//10. 마지막이라면 다음페이지, 마지막페이지버튼 비활성화
 
 
 

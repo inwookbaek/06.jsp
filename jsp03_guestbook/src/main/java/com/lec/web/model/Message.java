@@ -37,6 +37,6 @@ public class Message {
 	}
 	
 	public boolean matchPassword(String pwd) {
-		return password != null && !password.equals(pwd);
+		return password != null && password.equals(pwd);
 	}
 }

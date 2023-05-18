@@ -1,18 +1,23 @@
 <%@page import="com.lec.web.exception.InvalidPasswordException"%>
-<%@page import="com.lec.web.service.DeleteMessageService"%>
+<%@page import="com.lec.web.exception.MessageNotFoundException"%>
+<%@page import="com.lec.web.service.UpdateMessageService"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	int id = Integer.parseInt(request.getParameter("id"));
+	request.setCharacterEncoding("utf-8");
+	int id = Integer.parseInt(request.getParameter("id"));	
 	String pw = request.getParameter("pw");
-	
+	String msg = request.getParameter("msg");
 	boolean invalidPass = false;
 	
-	DeleteMessageService deleteService = DeleteMessageService.getInstance();
 	try {
-		deleteService.deleteMessag(id, pw);
+		UpdateMessageService updateService = UpdateMessageService.getInstance();
+		updateService.updateMessage(id, pw, msg);
+	} catch(MessageNotFoundException e) {
+		e.getMessage();
+		// 메시지가 예외발생할 경우 sendRedirect()
 	} catch(InvalidPasswordException e) {
 		invalidPass = true;
-	}	
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -25,14 +30,14 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h3>메시지삭제하기</h3>
+		<h3>메시지수정하기</h3>
 		<% if(!invalidPass) { %>
-		   	  <h4 class="bg-success text-white">메시지가 성공적으로 삭제가 되었습니다!!!</h4>
+		   	  <h4 class="bg-success text-white">메시지가 성공적으로 수정이 되었습니다!!!</h4>
 		<% } else { %>
 			  <h4 class="bg-danger text-white">비밀번호가 일치하지 않습니다! 다시 입력하세요!!!</h4>  
 		<% } %>
 		<br />
-		<a href="list.jsp" class="btn btn-primary">목록보기</a>
+		<a href="list.jsp?page=" class="btn btn-primary">목록보기</a>
 	</div>
 </body>
 </html>
