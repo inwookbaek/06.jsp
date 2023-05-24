@@ -10,6 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.board.action.Action;
+import com.lec.board.action.BoardDeleteAction;
+import com.lec.board.action.BoardDeleteFormAction;
+import com.lec.board.action.BoardDetailAction;
+import com.lec.board.action.BoardListAction;
+import com.lec.board.action.BoardModifyAction;
+import com.lec.board.action.BoardModifyFormAction;
 import com.lec.board.action.BoardWriteAction;
 import com.lec.board.vo.ActionForward;
 
@@ -50,10 +56,24 @@ public class BoardController extends HttpServlet {
 			action = new BoardWriteAction();
 			forward = action.execute(req, res);
 		} else if(command.equalsIgnoreCase("/boardList.bo")) {
-			forward = new ActionForward();
-			forward.setPath("/board/board_list.jsp");
+			action = new BoardListAction();
+			forward = action.execute(req, res);
+		} else if(command.equalsIgnoreCase("/boardDetail.bo")) {
+			 action = new BoardDetailAction();
+			 forward = action.execute(req, res);
+		} else if(command.equalsIgnoreCase("/boardModifyForm.bo")) {
+			 action = new BoardModifyFormAction();
+			 forward = action.execute(req, res);
+		} else if(command.equalsIgnoreCase("/boardModify.bo")) {
+			action = new BoardModifyAction();
+			forward = action.execute(req, res);
+		} else if(command.equalsIgnoreCase("/boardDeleteForm.bo")) {
+			action = new BoardDeleteFormAction();
+			forward = action.execute(req, res);
+		} else if(command.equalsIgnoreCase("/boardDelete.bo")) {
+			action = new BoardDeleteAction();
+			forward = action.execute(req, res);
 		}
-		
 		
 		if(forward != null) {
 			if(forward.isRedirect()) {
