@@ -24,31 +24,31 @@ public class BoardController extends HttpServlet {
 
 	Action action = null;
 	ActionForward forward = null;
-	
+
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
-			throws ServletException, IOException {
-		process(req, res);
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) 
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		process(req, res);
 	}
 
-	public void process(HttpServletRequest req, HttpServletResponse res) 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		
+		process(req, res);
+	}
+
+	public void process(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+
 		req.setCharacterEncoding("utf-8");
-		
+
 		// http://localhost:8088/jsp09_board/boardWriteForm.bo
 		String requestURI = req.getRequestURI();   // /jsp09_board/boardWriteForm.bo
 		String contextPath = req.getContextPath(); // /jsp09_board
 		String command = requestURI.substring(contextPath.length()); // /boardWriteForm.bo
 		// System.out.println(requestURI + "\n" + contextPath + "\n" + command);
-		
-		if(command.equals("/boardWriteForm.bo")) {		
+
+		if(command.equals("/boardWriteForm.bo")) {
 			forward = new ActionForward();
 			forward.setPath("/board/board_write.jsp");
 		} else if(command.equals("/boardWrite.bo")) {
@@ -60,26 +60,26 @@ public class BoardController extends HttpServlet {
 		} else if(command.equals("/boardDetail.bo")) {
 			action = new BoardDetailAction();
 			forward = action.execute(req, res);
-		} else if(command.equals("/boardModifyForm.bo")) {			
+		} else if(command.equals("/boardModifyForm.bo")) {
 			action = new BoardModifyFormAction();
 			forward = action.execute(req, res);
-		} else if(command.equals("/boardModify.bo")) {	
+		} else if(command.equals("/boardModify.bo")) {
 			action = new BoardModifyAction();
 			forward = action.execute(req, res);
-		} else if(command.equals("/boardDeleteForm.bo")) {	
+		} else if(command.equals("/boardDeleteForm.bo")) {
 			action = new BoardDeleteFormAction();
 			forward = action.execute(req, res);
-		} else if(command.equals("/boardDelete.bo")) {			
+		} else if(command.equals("/boardDelete.bo")) {
 			action = new BoardDeleteAction();
 			forward = action.execute(req, res);
 		}
-		
+
 		if(forward != null) {
 			if(forward.isRedirect()) {
 				res.sendRedirect(forward.getPath());
 			} else {
 				RequestDispatcher dispatcher = req.getRequestDispatcher(forward.getPath());
-				dispatcher.forward(req, res);							
+				dispatcher.forward(req, res);
 			}
 		}
 	}

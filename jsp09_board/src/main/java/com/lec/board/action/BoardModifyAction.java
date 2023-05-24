@@ -1,6 +1,5 @@
 package com.lec.board.action;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
@@ -17,13 +16,13 @@ public class BoardModifyAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) {
-		
+
 		ActionForward forward = null;
 		BoardBean board = null;
-		
+
 		String saveFolder = "d:/lec03/00.share/97.temp/upload";
 		int fileSize = 1024*2014*5;
-				
+
 		ServletContext sct = req.getServletContext();
 		boolean isWriter = false;
 		boolean isModifySuccess = false;
@@ -32,18 +31,18 @@ public class BoardModifyAction implements Action {
 			MultipartRequest multi = new MultipartRequest(req, saveFolder, fileSize, "utf-8",
 					new DefaultFileRenamePolicy());
 			int bno = Integer.parseInt(multi.getParameter("bno"));
-			String pass = multi.getParameter("pass");			
+			String pass = multi.getParameter("pass");
 			board = new BoardBean();
 			BoardModifyService boardModifyService = new BoardModifyService();
-			isWriter = boardModifyService.isBoardWriter(bno, pass);	
-			
+			isWriter = boardModifyService.isBoardWriter(bno, pass);
+
 			if(isWriter) {
 				board.setBno(bno);
 				board.setSubject(multi.getParameter("subject"));
 				board.setContent(multi.getParameter("content"));
 				board.setFile(multi.getOriginalFileName((String) multi.getFileNames().nextElement()));
 				isModifySuccess = boardModifyService.modifyBoard(board);
-				
+
 				if(isModifySuccess) {
 					forward = new ActionForward();
 					forward.setRedirect(true);
@@ -54,7 +53,7 @@ public class BoardModifyAction implements Action {
 					out.println("<script>");
 					out.println("   alert('게시글을 수정이 실패했습니다!');");
 					out.println("   history.back();");
-					out.println("</script>");					
+					out.println("</script>");
 				}
 			} else {
 				res.setContentType("text/html; charset=UTF-8");

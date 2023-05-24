@@ -9,7 +9,7 @@ import com.lec.db.JDBCUitility;
 public class BoardModifyService {
 
 	public boolean isBoardWriter(int bno, String pass) {
-		
+
 		boolean isWriter = false;
 		Connection conn = JDBCUitility.getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
@@ -20,12 +20,12 @@ public class BoardModifyService {
 
 	public boolean modifyBoard(BoardBean board) {
 		boolean isModifySuccess = false;
-		
+
 		Connection conn = JDBCUitility.getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(conn);
 		int updateCount = boardDAO.updateBoard(board);
-		
+
 		if(updateCount>0) {
 			JDBCUitility.commit(conn);
 			JDBCUitility.close(conn, null, null);

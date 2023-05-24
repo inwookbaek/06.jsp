@@ -16,7 +16,7 @@ public class BoardBean {
 	private int re_seq;
 	private int readcount;
 	private Date crtdate;
-	
+
 	public int getBno() {
 		return bno;
 	}
@@ -96,9 +96,7 @@ public class BoardBean {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if ((obj == null) || (getClass() != obj.getClass()))
 			return false;
 		BoardBean other = (BoardBean) obj;
 		return bno == other.bno && Objects.equals(content, other.content) && Objects.equals(crtdate, other.crtdate)
