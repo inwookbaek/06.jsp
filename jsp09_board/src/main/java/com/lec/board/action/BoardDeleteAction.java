@@ -55,7 +55,6 @@ public class BoardDeleteAction implements Action {
 				e.printStackTrace();
 			}
 		}
-		
 		return forward;
 	}
 

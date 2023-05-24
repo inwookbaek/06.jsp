@@ -6,8 +6,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.naming.SelectorContext;
-
 import com.lec.board.service.BoardWriteService;
 import com.lec.board.vo.ActionForward;
 import com.lec.board.vo.BoardBean;
@@ -61,7 +59,6 @@ public class BoardWriteAction implements Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
-		
 		return forward;
 	}
 }

@@ -48,29 +48,28 @@ public class BoardController extends HttpServlet {
 		String command = requestURI.substring(contextPath.length()); // /boardWriteForm.bo
 		// System.out.println(requestURI + "\n" + contextPath + "\n" + command);
 		
-		// 글목록, 글삭제, 글수정, 댓글,....
-		if(command.equalsIgnoreCase("/boardWriteForm.bo")) {
+		if(command.equals("/boardWriteForm.bo")) {		
 			forward = new ActionForward();
 			forward.setPath("/board/board_write.jsp");
-		} else if(command.equalsIgnoreCase("/boardWrite.bo")) {
+		} else if(command.equals("/boardWrite.bo")) {
 			action = new BoardWriteAction();
 			forward = action.execute(req, res);
-		} else if(command.equalsIgnoreCase("/boardList.bo")) {
+		} else if(command.equals("/boardList.bo")) {
 			action = new BoardListAction();
 			forward = action.execute(req, res);
-		} else if(command.equalsIgnoreCase("/boardDetail.bo")) {
-			 action = new BoardDetailAction();
-			 forward = action.execute(req, res);
-		} else if(command.equalsIgnoreCase("/boardModifyForm.bo")) {
-			 action = new BoardModifyFormAction();
-			 forward = action.execute(req, res);
-		} else if(command.equalsIgnoreCase("/boardModify.bo")) {
+		} else if(command.equals("/boardDetail.bo")) {
+			action = new BoardDetailAction();
+			forward = action.execute(req, res);
+		} else if(command.equals("/boardModifyForm.bo")) {			
+			action = new BoardModifyFormAction();
+			forward = action.execute(req, res);
+		} else if(command.equals("/boardModify.bo")) {	
 			action = new BoardModifyAction();
 			forward = action.execute(req, res);
-		} else if(command.equalsIgnoreCase("/boardDeleteForm.bo")) {
+		} else if(command.equals("/boardDeleteForm.bo")) {	
 			action = new BoardDeleteFormAction();
 			forward = action.execute(req, res);
-		} else if(command.equalsIgnoreCase("/boardDelete.bo")) {
+		} else if(command.equals("/boardDelete.bo")) {			
 			action = new BoardDeleteAction();
 			forward = action.execute(req, res);
 		}

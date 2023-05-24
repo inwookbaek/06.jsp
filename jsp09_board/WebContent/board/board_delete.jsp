@@ -16,6 +16,7 @@
 	<title>글삭제하기</title>
 </head>
 <body>
+
 	<div class="container" align="center">
 		<div class="jumbotron">
 			<h3>게시글 삭제하기</h3>
