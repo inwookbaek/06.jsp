@@ -34,7 +34,7 @@
 				<input type="button" class="btn btn-success" value="이전" onclick="javascript:history.go(-1)"/>
 			</div>
 		</form>
-	</div>
+	</div> 
 </body>
 </html>
 

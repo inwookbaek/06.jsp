@@ -1,7 +1,7 @@
 package com.lec.board.vo;
 
 public class PageInfo {
-
+ 
 	private int page;
 	private int totalPage;
 	private int startPage;

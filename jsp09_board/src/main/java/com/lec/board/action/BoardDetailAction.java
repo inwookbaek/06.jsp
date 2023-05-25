@@ -8,7 +8,7 @@ import com.lec.board.vo.ActionForward;
 import com.lec.board.vo.BoardBean;
 
 public class BoardDetailAction implements Action {
-
+ 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) {
 		// 글 상세보기

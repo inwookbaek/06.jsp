@@ -17,7 +17,7 @@ public class BoardDeleteAction implements Action {
 		ActionForward forward = null;
 		boolean isWriter = false;
 		boolean isDeleteSuccess = false;
-
+ 
 		int bno = Integer.parseInt(req.getParameter("bno"));
 		BoardDeleteService boardDeleteService = new BoardDeleteService();
 		isWriter = boardDeleteService.isBoardWriter(bno, req.getParameter("pass"));

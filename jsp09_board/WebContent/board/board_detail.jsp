@@ -10,7 +10,7 @@
   	<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 	<title>글상세보기</title>
-  	<style>
+  	<style> 
   		.login-btn {
   			clear: black;
   			/* background-color: #FFC312; */

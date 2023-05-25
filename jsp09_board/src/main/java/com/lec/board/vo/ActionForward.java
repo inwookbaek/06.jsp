@@ -1,7 +1,7 @@
 package com.lec.board.vo;
 
 public class ActionForward {
-
+ 
 	private boolean isRedirect = false;
 	private String path = null;
 

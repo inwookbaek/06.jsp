@@ -16,6 +16,8 @@ import com.lec.board.action.BoardDetailAction;
 import com.lec.board.action.BoardListAction;
 import com.lec.board.action.BoardModifyAction;
 import com.lec.board.action.BoardModifyFormAction;
+import com.lec.board.action.BoardReplyAction;
+import com.lec.board.action.BoardReplyFormAction;
 import com.lec.board.action.BoardWriteAction;
 import com.lec.board.vo.ActionForward;
 
@@ -24,7 +26,7 @@ public class BoardController extends HttpServlet {
 
 	Action action = null;
 	ActionForward forward = null;
-
+ 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
@@ -41,6 +43,10 @@ public class BoardController extends HttpServlet {
 			throws ServletException, IOException {
 
 		req.setCharacterEncoding("utf-8");
+		String p = req.getParameter("p");
+		String f = req.getParameter("f");
+		String q = req.getParameter("q");
+		String fn = req.getParameter("fn");
 
 		// http://localhost:8088/jsp09_board/boardWriteForm.bo
 		String requestURI = req.getRequestURI();   // /jsp09_board/boardWriteForm.bo
@@ -50,7 +56,7 @@ public class BoardController extends HttpServlet {
 
 		if(command.equals("/boardWriteForm.bo")) {
 			forward = new ActionForward();
-			forward.setPath("/board/board_write.jsp");
+			forward.setPath("/board/board_write.jsp?p=" + p + "&f=" + f + "&q=" + q);
 		} else if(command.equals("/boardWrite.bo")) {
 			action = new BoardWriteAction();
 			forward = action.execute(req, res);
@@ -72,6 +78,18 @@ public class BoardController extends HttpServlet {
 		} else if(command.equals("/boardDelete.bo")) {
 			action = new BoardDeleteAction();
 			forward = action.execute(req, res);
+		} else if(command.equals("/boardReplyForm.bo")) {
+			action = new BoardReplyFormAction();
+			forward = action.execute(req, res);
+		} else if(command.equals("/boardReply.bo")) {
+			action = new BoardReplyAction();
+			forward = action.execute(req, res);
+		} else if(command.equals("/download.bo")) {
+			forward = new ActionForward();
+			forward.setPath("/board/board_download.jsp?p=" + p + "&f=" + f + "&q=" + q + "&fn=" + fn);
+		} else if(command.equals("/error.bo")) {
+			forward = new ActionForward();
+			forward.setPath("/board/error.jsp");
 		}
 
 		if(forward != null) {

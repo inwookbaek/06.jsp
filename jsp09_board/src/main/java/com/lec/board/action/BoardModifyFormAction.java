@@ -8,7 +8,7 @@ import com.lec.board.vo.ActionForward;
 import com.lec.board.vo.BoardBean;
 
 public class BoardModifyFormAction implements Action {
-
+ 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) {
 

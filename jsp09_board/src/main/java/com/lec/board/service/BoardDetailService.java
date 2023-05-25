@@ -5,7 +5,7 @@ import java.sql.Connection;
 import com.lec.board.dao.BoardDAO;
 import com.lec.board.vo.BoardBean;
 import com.lec.db.JDBCUitility;
-
+ 
 public class BoardDetailService {
 
 	public BoardBean getBoard(int bno) {
